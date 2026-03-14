@@ -12,10 +12,6 @@ brew install chill-institute/tap/chilly
 
 Formula updates are published automatically from tagged releases in `chill-institute/cli`.
 
-## Docs
-
-- [docs/README.md](./docs/README.md)
-
 ## Contributing
 
 Please read the [contributing guide](./CONTRIBUTING.md).
