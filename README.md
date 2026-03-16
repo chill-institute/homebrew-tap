@@ -1,4 +1,4 @@
-# chill-institute/homebrew-tap
+# homebrew-tap
 
 Homebrew tap for `chill.institute` packages.
 
