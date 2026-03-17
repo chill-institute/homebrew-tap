@@ -11,7 +11,7 @@ class Chilly < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/chill-institute/chill-institute-cli/releases/download/v1.0.1/chilly_1.0.1_darwin_amd64.tar.gz"
-      sha256 "4d9a05271e5c20b8b07443930538ec6d6945aef56b562403dc7b78f495dedcbc"
+      sha256 "804dc1a8a300891773fb9980220b6743a5b91c91e0a90339c290a890ec619519"
 
       define_method(:install) do
         bin.install "chilly"
@@ -19,7 +19,7 @@ class Chilly < Formula
     end
     if Hardware::CPU.arm?
       url "https://github.com/chill-institute/chill-institute-cli/releases/download/v1.0.1/chilly_1.0.1_darwin_arm64.tar.gz"
-      sha256 "c2dd4bbd83fe97f979e61aa34881729b1105709d227dc51b2ef2f945ddbc6092"
+      sha256 "596207a2c70c1891a6f08721032943b7e30cd3805175374ee773cbc463057569"
 
       define_method(:install) do
         bin.install "chilly"
@@ -30,14 +30,14 @@ class Chilly < Formula
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
       url "https://github.com/chill-institute/chill-institute-cli/releases/download/v1.0.1/chilly_1.0.1_linux_amd64.tar.gz"
-      sha256 "6bd39d56c35956bab963b452b1f4e574a01093a24eb436f03d7ef03e21fd3a84"
+      sha256 "b806a36222966ade429e5efbc58f94f5b06bb014dfa666eace9f9ef293052557"
       define_method(:install) do
         bin.install "chilly"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://github.com/chill-institute/chill-institute-cli/releases/download/v1.0.1/chilly_1.0.1_linux_arm64.tar.gz"
-      sha256 "11c6878d6995f11971c0ec4c57a1857742e51134bf42b2b29b2cf85f90cd10d5"
+      sha256 "257be0624a2ce6d47a31694b0b12fe0aebc7b79cba24e1f66c8efc0422e7d9c1"
       define_method(:install) do
         bin.install "chilly"
       end
