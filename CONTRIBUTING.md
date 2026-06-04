@@ -12,3 +12,4 @@ Thanks for contributing to `chill-institute/homebrew-tap`.
 
 - Run `./scripts/verify.sh` before opening a pull request.
 - Set `CHILL_TAP_INSTALL_SMOKE=1` when you want the verification pass to install the formula and run its `test do` block on a clean machine or in CI.
+- The verify script disables Homebrew auto-update by default. Override `HOMEBREW_NO_AUTO_UPDATE=0` when you intentionally want Homebrew to update first.

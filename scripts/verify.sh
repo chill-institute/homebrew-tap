@@ -8,6 +8,8 @@ formula_ref="$tap_name/chilly"
 temp_repo=''
 
 installed_by_script=0
+export HOMEBREW_NO_AUTO_UPDATE="${HOMEBREW_NO_AUTO_UPDATE:-1}"
+umask 022
 
 cleanup() {
   if [[ "$installed_by_script" == "1" ]] && [[ "${CHILL_TAP_KEEP_INSTALLED:-0}" != "1" ]]; then
@@ -23,12 +25,15 @@ cleanup() {
 
 trap cleanup EXIT
 
+chmod 0644 "$formula_path"
+
 printf '==> checking formula style\n'
 brew style "$formula_path"
 
 temp_repo="$(mktemp -d)"
 mkdir -p "$temp_repo/Formula"
 cp "$formula_path" "$temp_repo/Formula/chilly.rb"
+chmod 0644 "$temp_repo/Formula/chilly.rb"
 git -C "$temp_repo" init -q
 git -C "$temp_repo" add Formula/chilly.rb
 git -C "$temp_repo" -c user.name='Harness' -c user.email='harness@chill.institute' commit -qm 'tap snapshot'
