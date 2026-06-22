@@ -15,7 +15,7 @@ jobs:
       CHILL_TAP_INSTALL_SMOKE: "1"
     steps:
       - name: Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Verify tap
         run: ./scripts/verify.sh
