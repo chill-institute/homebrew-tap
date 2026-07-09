@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   verify:
-    runs-on: macos-latest
+    runs-on: blacksmith-6vcpu-macos-latest
     timeout-minutes: 20
     env:
       CHILL_TAP_INSTALL_SMOKE: "1"
