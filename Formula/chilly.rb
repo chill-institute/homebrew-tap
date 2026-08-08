@@ -5,21 +5,21 @@
 class Chilly < Formula
   desc "Agent-first command-line client for chill.institute"
   homepage "https://chill.institute"
-  version "2.3.3"
+  version "2.4.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/chill-institute/chill-cli/releases/download/v2.3.3/chilly_2.3.3_darwin_amd64.tar.gz"
-      sha256 "ec9767be814d1f8a06fcc533a4610e0b8077094274276c59334a2db76401d9a3"
+      url "https://github.com/chill-institute/chill-cli/releases/download/v2.4.0/chilly_2.4.0_darwin_amd64.tar.gz"
+      sha256 "a3c58748fe62c5ba5b87b1a66b90e6de2ba0df1b7e2f713b0140da1e16dc6b8e"
 
       define_method(:install) do
         bin.install "chilly"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/chill-institute/chill-cli/releases/download/v2.3.3/chilly_2.3.3_darwin_arm64.tar.gz"
-      sha256 "c449220c454f24a4ced2a3ec59bd655fec7065e54a2fbac47c8bab115d7a346e"
+      url "https://github.com/chill-institute/chill-cli/releases/download/v2.4.0/chilly_2.4.0_darwin_arm64.tar.gz"
+      sha256 "95922851764869b0f0241a55685437036636e211becbba9e3dc25c47df429786"
 
       define_method(:install) do
         bin.install "chilly"
@@ -29,15 +29,15 @@ class Chilly < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/chill-institute/chill-cli/releases/download/v2.3.3/chilly_2.3.3_linux_amd64.tar.gz"
-      sha256 "22490daa8ba4d2bebb87b4db730e2238a1b45415aeb2c4ee6d432f23c9b2f4c9"
+      url "https://github.com/chill-institute/chill-cli/releases/download/v2.4.0/chilly_2.4.0_linux_amd64.tar.gz"
+      sha256 "7eb2e99dd6b8e3d924929089f6d0893428a7eb91bc627b5b22c4418cd1b8fd5c"
       define_method(:install) do
         bin.install "chilly"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/chill-institute/chill-cli/releases/download/v2.3.3/chilly_2.3.3_linux_arm64.tar.gz"
-      sha256 "1f1405956235a3d5631f23499b3bd319b7cf3776c69c86a7e43b2447ff4b3bfc"
+      url "https://github.com/chill-institute/chill-cli/releases/download/v2.4.0/chilly_2.4.0_linux_arm64.tar.gz"
+      sha256 "4adb660f252372b61ec931597551adf4f3aca423a353fb342ae12491a4367675"
       define_method(:install) do
         bin.install "chilly"
       end
