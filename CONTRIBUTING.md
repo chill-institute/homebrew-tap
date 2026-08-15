@@ -1,15 +1,14 @@
 # Contributing
 
-Thanks for contributing to `chill-institute/homebrew-tap`.
+This repository contains Homebrew release plumbing. Keep formula and install
+changes aligned with the tagged CLI release they describe.
 
-## Scope
+## Verify
 
-- Keep this repo focused on Homebrew formulas and tap maintenance.
-- Update formulas and install guidance together when release behavior changes.
-- Prefer small, reviewable changes.
+```bash
+./scripts/verify.sh
+CHILL_TAP_INSTALL_SMOKE=1 ./scripts/verify.sh
+```
 
-## Validation
-
-- Run `./scripts/verify.sh` before opening a pull request.
-- Set `CHILL_TAP_INSTALL_SMOKE=1` when you want the verification pass to install the formula and run its `test do` block on a clean machine or in CI.
-- The verify script disables Homebrew auto-update by default. Override `HOMEBREW_NO_AUTO_UPDATE=0` when you intentionally want Homebrew to update first.
+The second command installs the formula and runs its test block. Verification
+disables Homebrew auto-update; set `HOMEBREW_NO_AUTO_UPDATE=0` to update first.

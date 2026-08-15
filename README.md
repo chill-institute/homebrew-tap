@@ -1,6 +1,6 @@
 # homebrew-tap
 
-Homebrew tap for `chill.institute` packages.
+Homebrew formula for the `chilly` command-line client.
 
 ## Install
 
@@ -10,12 +10,6 @@ brew install chill-institute/tap/chilly
 
 ## Maintenance
 
-Formula updates are published automatically from tagged releases in `chill-institute/cli`.
+Tagged [`chill-cli`](https://github.com/chill-institute/chill-cli) releases update the formula automatically.
 
-## Contributing
-
-Please read the [contributing guide](./CONTRIBUTING.md).
-
-## License
-
-Licensed under the [MIT License](./LICENSE).
+[Maintenance](./CONTRIBUTING.md) · [MIT License](./LICENSE)
