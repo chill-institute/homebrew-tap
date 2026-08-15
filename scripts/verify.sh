@@ -51,6 +51,23 @@ if [[ "${CHILL_TAP_INSTALL_SMOKE:-0}" != "1" ]]; then
   exit 0
 fi
 
+formula_url="$(
+  brew info --json=v2 "$formula_ref" |
+    ruby -rjson -e 'puts JSON.parse(STDIN.read).fetch("formulae").fetch(0).fetch("urls").fetch("stable").fetch("url")'
+)"
+printf '==> waiting for release artifact\n'
+curl \
+  --fail \
+  --head \
+  --location \
+  --retry 24 \
+  --retry-all-errors \
+  --retry-delay 5 \
+  --retry-max-time 120 \
+  --show-error \
+  --silent \
+  "$formula_url" >/dev/null
+
 if brew list --formula chilly >/dev/null 2>&1; then
   if [[ "${CHILL_TAP_ALLOW_REINSTALL:-0}" != "1" ]]; then
     printf '==> skipping install smoke because chilly is already installed locally; set CHILL_TAP_ALLOW_REINSTALL=1 to force a reinstall\n'
