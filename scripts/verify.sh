@@ -2,6 +2,9 @@
 set -euo pipefail
 
 repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+
+"$repo_root/scripts/verify-workflows.sh"
+
 formula_path="$repo_root/Formula/chilly.rb"
 tap_name="${CHILL_TAP_VERIFY_TAP:-chill-institute/harness-verify-local}"
 formula_ref="$tap_name/chilly"
