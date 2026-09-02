@@ -1,0 +1,16 @@
+[tools]
+actionlint = "1.7.12"
+zizmor = "1.29.0"
+
+[tasks.verify]
+description = "Audit and test the tap formula"
+run = "./scripts/verify.sh"
+
+[tasks.actions]
+description = "Validate and audit GitHub Actions"
+shell = "bash -c"
+run = '''
+set -euo pipefail
+actionlint
+zizmor .github/workflows
+'''
