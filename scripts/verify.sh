@@ -47,9 +47,7 @@ printf '==> tapping %s from a temporary repo snapshot\n' "$tap_name"
 brew tap "$tap_name" "$temp_repo" >/dev/null
 
 printf '==> auditing formula\n'
-# GoReleaser always emits an explicit `version`, which strict audit reports as
-# redundant with the release URL. The check is style-only; keep the rest strict.
-brew audit --strict --except=version "$formula_ref"
+brew audit --strict "$formula_ref"
 
 if [[ "${CHILL_TAP_INSTALL_SMOKE:-0}" != "1" ]]; then
   printf '==> skipping install smoke; set CHILL_TAP_INSTALL_SMOKE=1 to exercise the formula test block\n'
