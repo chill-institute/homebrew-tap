@@ -49,6 +49,28 @@ brew tap "$tap_name" "$temp_repo" >/dev/null
 printf '==> auditing formula\n'
 brew audit --strict "$formula_ref"
 
+printf '==> checking every archive against its formula sha256\n'
+archives="$(
+  ruby -e 'File.read(ARGV[0]).scan(/url "([^"]+)"\s*\n\s*sha256 "([0-9a-f]{64})"/) { |url, sum| puts "#{sum} #{url}" }' "$formula_path"
+)"
+if [[ -z "$archives" ]] || [[ "$(wc -l <<<"$archives")" -ne "$(grep -c '^ *url "' "$formula_path")" ]]; then
+  printf 'every url in %s needs a sha256 on the next line\n' "$formula_path" >&2
+  exit 1
+fi
+mismatch=0
+while read -r expected url; do
+  actual="$(curl --fail --location --silent --show-error --retry 5 --retry-all-errors "$url" | shasum -a 256 | cut -d ' ' -f 1)"
+  if [[ "$actual" != "$expected" ]]; then
+    printf '%s has sha256 %s; the formula expects %s\n' "$url" "$actual" "$expected" >&2
+    mismatch=1
+  else
+    printf 'ok %s\n' "$url"
+  fi
+done <<<"$archives"
+if [[ "$mismatch" != 0 ]]; then
+  exit 1
+fi
+
 if [[ "${CHILL_TAP_INSTALL_SMOKE:-0}" != "1" ]]; then
   printf '==> skipping install smoke; set CHILL_TAP_INSTALL_SMOKE=1 to exercise the formula test block\n'
   exit 0
