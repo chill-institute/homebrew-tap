@@ -1,8 +1,11 @@
 name: Verify
 
-# No push trigger: pull requests verify the same tree before merge and the
-# weekly schedule covers the install smoke against the published release.
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - Formula/**
   pull_request:
   workflow_dispatch:
   schedule:
@@ -20,7 +23,7 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 20
     env:
-      CHILL_TAP_INSTALL_SMOKE: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && '1' || '0' }}
+      CHILL_TAP_INSTALL_SMOKE: ${{ github.event_name != 'pull_request' && '1' || '0' }}
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
