@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - .github/**
       - Formula/**
   pull_request:
   workflow_dispatch:
@@ -52,3 +53,7 @@ jobs:
 
       - name: Lint and audit workflows
         run: mise run actions
+
+      - name: Scan pushed range
+        if: ${{ !cancelled() }}
+        uses: chill-institute/.github/.github/actions/scan@04bad7d160da50b0509abfd5ff2e382aaf7d1aef # v1.0.0
