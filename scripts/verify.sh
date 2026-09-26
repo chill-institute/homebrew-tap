@@ -57,6 +57,23 @@ if [[ -z "$archives" ]] || [[ "$(wc -l <<<"$archives")" -ne "$(grep -c '^ *url "
   printf 'every url in %s needs a sha256 on the next line\n' "$formula_path" >&2
   exit 1
 fi
+release_prefix='https://github.com/chill-institute/chill-cli/releases/download/v'
+release_version=''
+while read -r _ url; do
+  version="${url#"$release_prefix"}"
+  version="${version%%/*}"
+  if [[ "$url" != "$release_prefix"* ]] || [[ -z "$version" ]] || [[ "$url" != "$release_prefix$version/"* ]]; then
+    printf '%s is not a chill-cli release download\n' "$url" >&2
+    exit 1
+  fi
+  if [[ -z "$release_version" ]]; then
+    release_version="$version"
+  elif [[ "$version" != "$release_version" ]]; then
+    printf '%s is from v%s; other archives are from v%s\n' "$url" "$version" "$release_version" >&2
+    exit 1
+  fi
+done <<<"$archives"
+
 mismatch=0
 while read -r expected url; do
   actual="$(curl --fail --location --silent --show-error --retry 5 --retry-all-errors "$url" | shasum -a 256 | cut -d ' ' -f 1)"
