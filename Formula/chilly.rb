@@ -8,23 +8,23 @@ class Chilly < Formula
 
   on_macos do
     on_intel do
-      url "https://github.com/chill-institute/chill-cli/releases/download/v2.6.16/chilly_2.6.16_darwin_amd64.tar.gz"
-      sha256 "4d76f4e807683c00906667c485a692b456dc127df7f89ab93bf0160b77016499"
+      url "https://github.com/chill-institute/chill-cli/releases/download/v2.6.17/chilly_2.6.17_darwin_amd64.tar.gz"
+      sha256 "58b49311a2e071201b3cd5627d3c7f648c211476f83f9984e6a249afe1e83d55"
     end
     on_arm do
-      url "https://github.com/chill-institute/chill-cli/releases/download/v2.6.16/chilly_2.6.16_darwin_arm64.tar.gz"
-      sha256 "e34cf95409ded8ac4959b0a7e5ad465d272b062de59519622b0a0f9f74885720"
+      url "https://github.com/chill-institute/chill-cli/releases/download/v2.6.17/chilly_2.6.17_darwin_arm64.tar.gz"
+      sha256 "5d8fb564b5ab1481485c7e1da44060d5037c0afd73075a4fd3c05143da985a01"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/chill-institute/chill-cli/releases/download/v2.6.16/chilly_2.6.16_linux_amd64.tar.gz"
-      sha256 "8faebf34890ea13a9467bad52448d608097d570d8b35f9a23c025b9e76408f3d"
+      url "https://github.com/chill-institute/chill-cli/releases/download/v2.6.17/chilly_2.6.17_linux_amd64.tar.gz"
+      sha256 "11109c537ae2c2bb5a0bbc95e543606402ca6c87a84febe19d25145a6e92a782"
     end
     on_arm do
-      url "https://github.com/chill-institute/chill-cli/releases/download/v2.6.16/chilly_2.6.16_linux_arm64.tar.gz"
-      sha256 "ea0b5c4ee7b7aa60554bdaa9b44651e54f708b11757cdf97acb6ed27971f7c52"
+      url "https://github.com/chill-institute/chill-cli/releases/download/v2.6.17/chilly_2.6.17_linux_arm64.tar.gz"
+      sha256 "333e7bcba9a142112d9d168c8b54a7faa4d8150718cc12af3bd19420af0d5a3f"
     end
   end
 
