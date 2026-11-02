@@ -14,6 +14,6 @@ Both commands download every platform's archive and check its sha256. The
 second also installs the formula and runs its test block. Verification
 disables Homebrew auto-update; set `HOMEBREW_NO_AUTO_UPDATE=0` to update first.
 
-[Verify](./.github/workflows/verify.yml) runs the audit on pull requests and the
-install smoke on pushes to `main` that change `Formula/`, on dispatch, and weekly.
-The weekly run catches release assets that disappear after the formula lands.
+[verify.sh](./scripts/verify.sh) owns the checks and options;
+[verify.yml](./.github/workflows/verify.yml) owns triggers and CI mode. The
+periodic check catches release assets that disappear after publication.

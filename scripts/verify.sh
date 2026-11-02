@@ -11,12 +11,17 @@ formula_ref="$tap_name/chilly"
 temp_repo=''
 
 installed_by_script=0
+trusted_by_script=0
 export HOMEBREW_NO_AUTO_UPDATE="${HOMEBREW_NO_AUTO_UPDATE:-1}"
 umask 022
 
 cleanup() {
   if [[ "$installed_by_script" == "1" ]] && [[ "${CHILL_TAP_KEEP_INSTALLED:-0}" != "1" ]]; then
     brew uninstall --formula "$formula_ref" >/dev/null 2>&1 || true
+  fi
+
+  if [[ "$trusted_by_script" == "1" ]]; then
+    brew untrust --formula "$formula_ref" >/dev/null 2>&1 || true
   fi
 
   brew untap "$tap_name" >/dev/null 2>&1 || true
@@ -30,9 +35,6 @@ trap cleanup EXIT
 
 chmod 0644 "$formula_path"
 
-printf '==> checking formula style\n'
-brew style "$formula_path"
-
 temp_repo="$(mktemp -d)"
 mkdir -p "$temp_repo/Formula"
 cp "$formula_path" "$temp_repo/Formula/chilly.rb"
@@ -45,6 +47,15 @@ brew untap "$tap_name" >/dev/null 2>&1 || true
 
 printf '==> tapping %s from a temporary repo snapshot\n' "$tap_name"
 brew tap "$tap_name" "$temp_repo" >/dev/null
+
+printf '==> checking formula style\n'
+brew style --formula "$formula_ref"
+
+if ! brew trust --formula --json=v1 |
+  ruby -rjson -e 'exit(JSON.parse(STDIN.read).include?(ARGV.fetch(0)) ? 0 : 1)' "$formula_ref"; then
+  brew trust --formula "$formula_ref"
+  trusted_by_script=1
+fi
 
 printf '==> auditing formula\n'
 brew audit --strict "$formula_ref"
