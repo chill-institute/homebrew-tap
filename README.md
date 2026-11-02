@@ -10,6 +10,7 @@ brew install chill-institute/tap/chilly
 
 ## Maintenance
 
-Each published [`chill-cli`](https://github.com/chill-institute/chill-cli) release updates the formula with a signed `chill-ci[bot]` commit.
+[Formula generator](https://github.com/chill-institute/chill-cli/blob/main/scripts/homebrew-formula) ·
+[release workflow](https://github.com/chill-institute/chill-cli/blob/main/.github/workflows/_release.yml).
 
 [Maintenance](./CONTRIBUTING.md) · [MIT License](./LICENSE)
